@@ -20,7 +20,9 @@
 ### {{ job.position }}, {{ job.company }}
 ##### {{ job.startDate }} - {{ job.endDate|default("Present")}}
 
-{% if loop.index < 3 %}{{ job.summary }}{%- endif %}
+{% if loop.index < 3 %}{{ job.summary }}
+
+{{ job.highlights }}{%- endif %}
 {% endfor %}
 
 {%- if publications %}
