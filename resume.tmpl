@@ -1,0 +1,49 @@
+# {{ basics.name }}
+
+## Contact
+{{ basics.location.address }} <br/>
+{{ basics.location.city }}, {{ basics.location.postalCode }}<br/>
+{{ basics.phone }}
+
+{%- if basics.email %}Email: {{ basics.email }}<br/>{% endif %}
+{%- if basics.website %}Website: [{{ basics.website}}]({{ basics.website }}){% endif %}
+
+{% for profile in basics.profiles %}{{ profile.network }}: [{{ profile.url }}]({{ profile.url }})
+{% endfor %}
+
+## Summary
+{{ basics.summary }}
+
+## Experience
+
+{% for job in work %}
+### {{ job.position }}, {{ job.company }}
+##### {{ job.startDate }} - {{ job.endDate|default("Present")}}
+
+{% if loop.index < 3 %}{{ job.summary }}{%- endif %}
+{% endfor %}
+
+{%- if publications %}
+{% for pub in publications %}
+### {{ pub.name }}
+##### {{ pub.releaseDate }}
+{{ pub.summary }}
+{% endfor %}
+{%- endif %}
+
+{%- if awards %}
+{% for award in awards %}
+### {{ award.title }} - {{ award.awarder }}
+##### {{ award.date }}
+{{ award.summary }}
+{% endfor %}
+{%- endif %}
+
+## Volunteer
+{% for vol in volunteer %}
+### {{ vol.position }}, {{ vol.organization }}
+##### {{ vol.startDate }}{% if vol.endDate %}-{{ vol.endDate }}{% endif %}
+{% endfor %}
+
+## Skills
+{% for skill in skills %}[{{ skill.name }}], {% endfor %}
